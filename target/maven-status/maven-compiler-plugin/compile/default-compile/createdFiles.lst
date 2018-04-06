@@ -1,0 +1,6 @@
+quicktrack\SwaggerConfiguration.class
+quicktrack\Application.class
+quicktrack\repository\GpsSensorRepository.class
+quicktrack\service\GpsSensorService.class
+quicktrack\controller\GpsController.class
+quicktrack\entity\GpsSensor.class
