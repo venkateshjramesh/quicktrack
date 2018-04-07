@@ -1,14 +1,12 @@
 package quicktrack.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class WeightSensor {
-    @Id
-    private String id;
-    private Double totalWeight;
-    private Double weightChange;
+
+
+public class FuelSensorDashboard {
+
+    private Double totalFuel;
+    private Double fuelChange;
     private String status;
     private String comments;
     private String modifiedDate;
@@ -17,28 +15,22 @@ public class WeightSensor {
     private String vehicleNumber;
     private String fleetId;
 
-    public String getId() {
-        return id;
+
+
+    public Double getTotalFuel() {
+        return totalFuel;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTotalFuel(Double totalFuel) {
+        this.totalFuel = totalFuel;
     }
 
-    public Double getTotalWeight() {
-        return totalWeight;
+    public Double getFuelChange() {
+        return fuelChange;
     }
 
-    public void setTotalWeight(Double totalWeight) {
-        this.totalWeight = totalWeight;
-    }
-
-    public Double getWeightChange() {
-        return weightChange;
-    }
-
-    public void setWeightChange(Double weightChange) {
-        this.weightChange = weightChange;
+    public void setFuelChange(Double fuelChange) {
+        this.fuelChange = fuelChange;
     }
 
     public String getStatus() {
@@ -99,10 +91,9 @@ public class WeightSensor {
 
     @Override
     public String toString() {
-        return "WeightSensor{" +
-                "id='" + id + '\'' +
-                ", totalWeight=" + totalWeight +
-                ", weightChange=" + weightChange +
+        return "FuelSensor{" +
+                ", totalFuel=" + totalFuel +
+                ", fuelChange=" + fuelChange +
                 ", status='" + status + '\'' +
                 ", comments='" + comments + '\'' +
                 ", modifiedDate='" + modifiedDate + '\'' +

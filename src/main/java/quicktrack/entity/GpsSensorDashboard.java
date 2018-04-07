@@ -1,14 +1,9 @@
 package quicktrack.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class GpsSensorDashboard {
 
-@Document
-public class WeightSensor {
-    @Id
-    private String id;
-    private Double totalWeight;
-    private Double weightChange;
+    private Double latitude;
+    private Double longitude;
     private String status;
     private String comments;
     private String modifiedDate;
@@ -17,28 +12,21 @@ public class WeightSensor {
     private String vehicleNumber;
     private String fleetId;
 
-    public String getId() {
-        return id;
+
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
-    public Double getTotalWeight() {
-        return totalWeight;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public void setTotalWeight(Double totalWeight) {
-        this.totalWeight = totalWeight;
-    }
-
-    public Double getWeightChange() {
-        return weightChange;
-    }
-
-    public void setWeightChange(Double weightChange) {
-        this.weightChange = weightChange;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public String getStatus() {
@@ -99,10 +87,9 @@ public class WeightSensor {
 
     @Override
     public String toString() {
-        return "WeightSensor{" +
-                "id='" + id + '\'' +
-                ", totalWeight=" + totalWeight +
-                ", weightChange=" + weightChange +
+        return "GpsSensor{" +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 ", status='" + status + '\'' +
                 ", comments='" + comments + '\'' +
                 ", modifiedDate='" + modifiedDate + '\'' +

@@ -3,12 +3,11 @@ package quicktrack.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class WeightSensor {
-    @Id
-    private String id;
-    private Double totalWeight;
-    private Double weightChange;
+
+public class TyreSensorDashboard {
+
+    private TyrePressureSensor tyrePressureSensor;
+    private TyreChangeSensor tyreChangeSensor;
     private String status;
     private String comments;
     private String modifiedDate;
@@ -17,28 +16,21 @@ public class WeightSensor {
     private String vehicleNumber;
     private String fleetId;
 
-    public String getId() {
-        return id;
+
+    public TyrePressureSensor getTyrePressureSensor() {
+        return tyrePressureSensor;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTyrePressureSensor(TyrePressureSensor tyrePressureSensor) {
+        this.tyrePressureSensor = tyrePressureSensor;
     }
 
-    public Double getTotalWeight() {
-        return totalWeight;
+    public TyreChangeSensor getTyreChangeSensor() {
+        return tyreChangeSensor;
     }
 
-    public void setTotalWeight(Double totalWeight) {
-        this.totalWeight = totalWeight;
-    }
-
-    public Double getWeightChange() {
-        return weightChange;
-    }
-
-    public void setWeightChange(Double weightChange) {
-        this.weightChange = weightChange;
+    public void setTyreChangeSensor(TyreChangeSensor tyreChangeSensor) {
+        this.tyreChangeSensor = tyreChangeSensor;
     }
 
     public String getStatus() {
@@ -99,10 +91,9 @@ public class WeightSensor {
 
     @Override
     public String toString() {
-        return "WeightSensor{" +
-                "id='" + id + '\'' +
-                ", totalWeight=" + totalWeight +
-                ", weightChange=" + weightChange +
+        return "TyreSensor{" +
+                ", tyrePressureSensor=" + tyrePressureSensor +
+                ", tyreChangeSensor=" + tyreChangeSensor +
                 ", status='" + status + '\'' +
                 ", comments='" + comments + '\'' +
                 ", modifiedDate='" + modifiedDate + '\'' +

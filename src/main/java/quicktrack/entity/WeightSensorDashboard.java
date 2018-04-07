@@ -3,10 +3,8 @@ package quicktrack.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class WeightSensor {
-    @Id
-    private String id;
+public class WeightSensorDashboard {
+
     private Double totalWeight;
     private Double weightChange;
     private String status;
@@ -17,13 +15,6 @@ public class WeightSensor {
     private String vehicleNumber;
     private String fleetId;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public Double getTotalWeight() {
         return totalWeight;
@@ -89,18 +80,17 @@ public class WeightSensor {
         this.vehicleNumber = vehicleNumber;
     }
 
-    public String getFleetId() {
+    public String getFleedId() {
         return fleetId;
     }
 
-    public void setFleetId(String fleetId) {
-        this.fleetId = fleetId;
+    public void setFleedId(String fleedId) {
+        this.fleetId = fleedId;
     }
 
     @Override
     public String toString() {
         return "WeightSensor{" +
-                "id='" + id + '\'' +
                 ", totalWeight=" + totalWeight +
                 ", weightChange=" + weightChange +
                 ", status='" + status + '\'' +
