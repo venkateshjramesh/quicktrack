@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="147c7660-d4b4-4276-9cbb-2ad95b6ab072" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/quicktrack/service/FuelSensorService.java" afterPath="$PROJECT_DIR$/src/main/java/quicktrack/service/FuelSensorService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/quicktrack/service/GpsSensorService.java" afterPath="$PROJECT_DIR$/src/main/java/quicktrack/service/GpsSensorService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/quicktrack/service/TyreSensorService.java" afterPath="$PROJECT_DIR$/src/main/java/quicktrack/service/TyreSensorService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/quicktrack/service/WeightSensorService.java" afterPath="$PROJECT_DIR$/src/main/java/quicktrack/service/WeightSensorService.java" />
     </list>
     <ignored path="spring-mongodb-data-rest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,13 +52,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WeightSensorService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WeightSensorService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/quicktrack/service/WeightSensorService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="70" column="13" lean-forward="true" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+            <state relative-caret-position="355">
+              <caret line="63" column="5" lean-forward="false" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DashboardController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/quicktrack/controller/DashboardController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DashboardService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/quicktrack/service/DashboardService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="25" column="58" lean-forward="false" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
+              <folding>
+                <element signature="e#742#743#0" expanded="true" />
+                <element signature="e#807#808#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -158,6 +177,8 @@
         <option value="$PROJECT_DIR$/src/main/java/quicktrack/service/GpsSensorService.java" />
         <option value="$PROJECT_DIR$/src/main/java/quicktrack/service/TyreSensorService.java" />
         <option value="$PROJECT_DIR$/src/main/java/quicktrack/service/WeightSensorService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/quicktrack/service/DashboardService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/quicktrack/controller/DashboardController.java" />
       </list>
     </option>
   </component>
@@ -300,10 +321,10 @@
       <recent name="springmongodbdatarest.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="quicktrack.service" />
+      <recent name="quicktrack.controller" />
       <recent name="quicktrack.repository" />
       <recent name="quicktrack.entity" />
-      <recent name="quicktrack.controller" />
-      <recent name="quicktrack.service" />
       <recent name="springmongodbdatarest.repository" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
@@ -661,7 +682,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1046" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -713,24 +733,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/quicktrack/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/quicktrack/repository/FuelSensorRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/quicktrack/controller/WeightController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -1160,11 +1162,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/quicktrack/service/WeightSensorService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="70" column="13" lean-forward="true" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+        <state relative-caret-position="355">
+          <caret line="63" column="5" lean-forward="false" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/quicktrack/service/DashboardService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="25" column="58" lean-forward="false" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
+          <folding>
+            <element signature="e#742#743#0" expanded="true" />
+            <element signature="e#807#808#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/quicktrack/controller/DashboardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
