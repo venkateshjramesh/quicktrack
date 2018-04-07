@@ -2,10 +2,6 @@ package quicktrack.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-import java.util.Date;
 
 @Document
 public class GpsSensor {
@@ -17,6 +13,9 @@ public class GpsSensor {
     private String comments;
     private String modifiedDate;
     private String createdDate;
+    private String gpsDate;
+    private String vehicleNumber;
+    private String fleetId;
 
     public String getId() {
         return id;
@@ -72,5 +71,45 @@ public class GpsSensor {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getGpsDate() {
+        return gpsDate;
+    }
+
+    public void setGpsDate(String gpsDate) {
+        this.gpsDate = gpsDate;
+    }
+
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
+    }
+
+    public String getFleetId() {
+        return fleetId;
+    }
+
+    public void setFleetId(String fleetId) {
+        this.fleetId = fleetId;
+    }
+
+    @Override
+    public String toString() {
+        return "GpsSensor{" +
+                "id='" + id + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", gpsDate='" + gpsDate + '\'' +
+                ", vehicleNumber='" + vehicleNumber + '\'' +
+                ", fleetId='" + fleetId + '\'' +
+                '}';
     }
 }

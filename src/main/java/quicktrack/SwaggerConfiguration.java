@@ -29,13 +29,13 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
-                "BULK DATA REST API",
-                "Bulk Data Rest End points.",
+                "QUICK TRACK REST API",
+                "Quick Track Rest End points.",
                 "API TOS",
                 "Espark Services",
-                "Bulk Data Team",
-                "Nielsen Private Limited",
-                "http://www.nielsen.com/in/en.html");
+                "Quick Track Team",
+                "Quick Track Private Limited",
+                "http://www.quicktrack.com/in/en.html");
         return apiInfo;
     }
 
