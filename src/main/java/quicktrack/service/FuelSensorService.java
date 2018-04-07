@@ -1,5 +1,6 @@
 package quicktrack.service;
 
+import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,11 +43,11 @@ public class FuelSensorService {
             alerts = new Alerts(fuelSensor.getVehicleNumber(), fuelSensor.getComments(), "FUEL", fuelSensor.getStatus(),fuelSensor.getId(),date, date, fuelSensor.getFleetId());
             alertRepository.save(alerts);
         }
-        saveDashboard(fuelSensor);
+        saveDashboard(fuelSensor,alerts);
     }
 
     //method to add the fuel sensor details to dashboard
-    public void saveDashboard(FuelSensor fuelSensor){
+    public void saveDashboard(FuelSensor fuelSensor,Alerts alerts){
         Dashboard dashboard = dashboardRepository.findByFleetId(fuelSensor.getFleetId());
         if(dashboard == null){
             dashboard = new Dashboard();
@@ -57,9 +58,25 @@ public class FuelSensorService {
             fuelSensorDashboard = new LinkedList<FuelSensorDashboard>();
         }
 
+        saveAlertsInDashboard(alerts, dashboard);
+
         checkForVechicleNoAvailability(fuelSensor, fuelSensorDashboard);
         dashboard.setFuelSensorDashboard(fuelSensorDashboard);
         dashboardRepository.save(dashboard);
+    }
+
+    private void saveAlertsInDashboard(Alerts alerts, Dashboard dashboard) {
+        if(alerts != null){
+            List<Alerts> alertList = dashboard.getAlerts();
+            if(alertList == null) {
+                alertList = new LinkedList<Alerts>();
+            }
+            if(alertList.size() > 150){
+                alertList.remove(0);
+            }
+            alertList.add(alerts);
+            dashboard.setAlerts(alertList);
+        }
     }
 
     private void checkForVechicleNoAvailability(FuelSensor fuelSensor, List<FuelSensorDashboard> fuelSensorDashboard) {

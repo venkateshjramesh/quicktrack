@@ -35,16 +35,17 @@ public class WeightSensorService {
         weightSensor.setCreatedDate(date);
         weightSensor.setModifiedDate(date);
         weightSensorRepository.save(weightSensor);
+        Alerts alerts = null;
         //add alert if the status is red and the comment is overspeed or sudden break
         if(weightSensor.getStatus().equalsIgnoreCase("R")){
-            Alerts alerts = new Alerts(weightSensor.getVehicleNumber(), weightSensor.getComments(), "WEIGHT", weightSensor.getStatus(),weightSensor.getId(),date, date, weightSensor.getFleetId());
+            alerts = new Alerts(weightSensor.getVehicleNumber(), weightSensor.getComments(), "WEIGHT", weightSensor.getStatus(),weightSensor.getId(),date, date, weightSensor.getFleetId());
             alertRepository.save(alerts);
         }
-        saveDashboard(weightSensor);
+        saveDashboard(weightSensor,alerts);
     }
 
     //method to add the weight sensor details to dashboard
-    public void saveDashboard(WeightSensor weightSensor){
+    public void saveDashboard(WeightSensor weightSensor,Alerts alerts){
         Dashboard dashboard = dashboardRepository.findByFleetId(weightSensor.getFleetId());
         if(dashboard == null){
             dashboard = new Dashboard();
@@ -55,9 +56,25 @@ public class WeightSensorService {
             weightSensorDashboard = new LinkedList<WeightSensorDashboard>();
         }
 
+        saveAlertsInDashboard(alerts, dashboard);
+
         checkForVechicleNoAvailability(weightSensor, weightSensorDashboard);
         dashboard.setWeightSensorDashboard(weightSensorDashboard);
         dashboardRepository.save(dashboard);
+    }
+
+    private void saveAlertsInDashboard(Alerts alerts, Dashboard dashboard) {
+        if(alerts != null){
+            List<Alerts> alertList = dashboard.getAlerts();
+            if(alertList == null) {
+                alertList = new LinkedList<Alerts>();
+            }
+            if(alertList.size() > 150){
+                alertList.remove(0);
+            }
+            alertList.add(alerts);
+            dashboard.setAlerts(alertList);
+        }
     }
 
     private void checkForVechicleNoAvailability(WeightSensor weightSensor, List<WeightSensorDashboard> weightSensorDashboard) {

@@ -40,11 +40,11 @@ public class GpsSensorService {
             alerts = new Alerts(gpsSensor.getVehicleNumber(), gpsSensor.getComments(), "GPS", gpsSensor.getStatus(),gpsSensor.getId(),date, date, gpsSensor.getFleetId());
             alertRepository.save(alerts);
         }
-        saveDashboard(gpsSensor);
+        saveDashboard(gpsSensor,alerts);
     }
 
     //method to add the gps sensor details to dashboard
-    public void saveDashboard(GpsSensor gpsSensor){
+    public void saveDashboard(GpsSensor gpsSensor,Alerts alerts){
         Dashboard dashboard = dashboardRepository.findByFleetId(gpsSensor.getFleetId());
         if(dashboard == null){
             dashboard = new Dashboard();
@@ -55,9 +55,25 @@ public class GpsSensorService {
             gpsSensorDashboard = new LinkedList<GpsSensorDashboard>();
         }
 
+        saveAlertsInDashboard(alerts, dashboard);
+
         checkForVechicleNoAvailability(gpsSensor, gpsSensorDashboard);
         dashboard.setGpsSensorDashboard(gpsSensorDashboard);
         dashboardRepository.save(dashboard);
+    }
+
+    private void saveAlertsInDashboard(Alerts alerts, Dashboard dashboard) {
+        if(alerts != null){
+            List<Alerts> alertList = dashboard.getAlerts();
+            if(alertList == null) {
+                alertList = new LinkedList<Alerts>();
+            }
+            if(alertList.size() > 150){
+                alertList.remove(0);
+            }
+            alertList.add(alerts);
+            dashboard.setAlerts(alertList);
+        }
     }
 
     private void checkForVechicleNoAvailability(GpsSensor gpsSensor, List<GpsSensorDashboard> gpsSensorDashboard) {

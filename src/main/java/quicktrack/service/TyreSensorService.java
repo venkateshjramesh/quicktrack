@@ -35,16 +35,17 @@ public class TyreSensorService {
         tyreSensor.setCreatedDate(date);
         tyreSensor.setModifiedDate(date);
         tyreSensorRepository.save(tyreSensor);
+        Alerts alerts = null;
         //add alert if the status is red and the comment is overspeed or sudden break
         if(tyreSensor.getStatus().equalsIgnoreCase("R")){
-            Alerts alerts = new Alerts(tyreSensor.getVehicleNumber(), tyreSensor.getComments(), "TYRE", tyreSensor.getStatus(),tyreSensor.getId(),date, date, tyreSensor.getFleetId());
+            alerts = new Alerts(tyreSensor.getVehicleNumber(), tyreSensor.getComments(), "TYRE", tyreSensor.getStatus(),tyreSensor.getId(),date, date, tyreSensor.getFleetId());
             alertRepository.save(alerts);
         }
-        saveDashboard(tyreSensor);
+        saveDashboard(tyreSensor,alerts);
     }
 
     //method to add the weight sensor details to dashboard
-    public void saveDashboard(TyreSensor tyreSensor){
+    public void saveDashboard(TyreSensor tyreSensor,Alerts alerts){
         Dashboard dashboard = dashboardRepository.findByFleetId(tyreSensor.getFleetId());
         if(dashboard == null){
             dashboard = new Dashboard();
@@ -55,11 +56,27 @@ public class TyreSensorService {
             tyreSensorDashboard = new LinkedList<TyreSensorDashboard>();
         }
 
+        saveAlertsInDashboard(alerts, dashboard);
+
         checkForVechicleNoAvailability(tyreSensor, tyreSensorDashboard);
         dashboard.setTyreSensorDashboard(tyreSensorDashboard);
         dashboardRepository.save(dashboard);
     }
 
+
+    private void saveAlertsInDashboard(Alerts alerts, Dashboard dashboard) {
+        if(alerts != null){
+            List<Alerts> alertList = dashboard.getAlerts();
+            if(alertList == null) {
+                alertList = new LinkedList<Alerts>();
+            }
+            if(alertList.size() > 150){
+                alertList.remove(0);
+            }
+            alertList.add(alerts);
+            dashboard.setAlerts(alertList);
+        }
+    }
     private void checkForVechicleNoAvailability(TyreSensor tyreSensor, List<TyreSensorDashboard> tyreSensorDashboard) {
         for(int i=0;i<tyreSensorDashboard.size();i++){
             if(tyreSensorDashboard.get(i).getVehicleNumber().equalsIgnoreCase(tyreSensor.getVehicleNumber())){
