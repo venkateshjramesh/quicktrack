@@ -59,10 +59,51 @@ public class FuelSensorService {
         }
 
         saveAlertsInDashboard(alerts, dashboard);
-
+        saveVehicleFuelDetails( fuelSensor, dashboard);
         checkForVechicleNoAvailability(fuelSensor, fuelSensorDashboard);
         dashboard.setFuelSensorDashboard(fuelSensorDashboard);
         dashboardRepository.save(dashboard);
+    }
+
+    private void saveVehicleFuelDetails(FuelSensor fuelSensor,Dashboard dashboard){
+        List<VehicleStats> vehicleStats = dashboard.getVehicleStats();
+        VehicleStats vehicleStat = null;
+        Double fuelChange ;
+        if(vehicleStats != null && vehicleStats.size() > 0) {
+            for (int i = 0; i < vehicleStats.size(); i++) {
+                if (fuelSensor.getVehicleNumber().equalsIgnoreCase(vehicleStats.get(i).getVehicleNo())) {
+                    vehicleStat = vehicleStats.get(i);
+                    fuelChange = fuelSensor.getFuelChange();
+                    if (fuelChange > 0) {
+                        if(vehicleStat.getFuelAdded() != null)
+                            vehicleStat.setFuelAdded(vehicleStat.getFuelAdded() + fuelChange);
+                        else
+                            vehicleStat.setFuelAdded(fuelChange);
+                    } else if (fuelChange < 0) {
+                        if(vehicleStat.getFuelConsumed() != null)
+                            vehicleStat.setFuelConsumed(vehicleStat.getFuelConsumed() + fuelChange);
+                        else
+                            vehicleStat.setFuelConsumed(fuelChange);
+
+                    }
+                    vehicleStats.remove(i);
+                }
+            }
+        }else {
+            vehicleStats = new LinkedList<VehicleStats>();
+            if (vehicleStat == null) {
+                vehicleStat = new VehicleStats();
+                vehicleStat.setVehicleNo(fuelSensor.getVehicleNumber());
+                fuelChange = fuelSensor.getFuelChange();
+                if (fuelChange > 0) {
+                    vehicleStat.setFuelAdded(fuelChange);
+                } else if (fuelChange < 0) {
+                    vehicleStat.setFuelConsumed(fuelChange);
+                }
+            }
+        }
+        vehicleStats.add(vehicleStat);
+        dashboard.setVehicleStats(vehicleStats);
     }
 
     private void saveAlertsInDashboard(Alerts alerts, Dashboard dashboard) {

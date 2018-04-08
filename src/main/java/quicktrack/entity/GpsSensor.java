@@ -9,6 +9,7 @@ public class GpsSensor {
     private String id;
     private Double latitude;
     private Double longitude;
+    private Double distanceChanged;
     private String status;
     private String comments;
     private String modifiedDate;
@@ -39,6 +40,14 @@ public class GpsSensor {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public Double getDistanceChanged() {
+        return distanceChanged;
+    }
+
+    public void setDistanceChanged(Double distanceChanged) {
+        this.distanceChanged = distanceChanged;
     }
 
     public String getStatus() {
@@ -103,6 +112,7 @@ public class GpsSensor {
                 "id='" + id + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", distanceChanged=" + distanceChanged +
                 ", status='" + status + '\'' +
                 ", comments='" + comments + '\'' +
                 ", modifiedDate='" + modifiedDate + '\'' +

@@ -56,10 +56,43 @@ public class GpsSensorService {
         }
 
         saveAlertsInDashboard(alerts, dashboard);
-
+        saveVehicleDistanceDetails(gpsSensor,dashboard);
         checkForVechicleNoAvailability(gpsSensor, gpsSensorDashboard);
         dashboard.setGpsSensorDashboard(gpsSensorDashboard);
         dashboardRepository.save(dashboard);
+    }
+
+    private void saveVehicleDistanceDetails(GpsSensor gpsSensor,Dashboard dashboard){
+        List<VehicleStats> vehicleStats = dashboard.getVehicleStats();
+        VehicleStats vehicleStat = null;
+        Double distanceChange ;
+        if(vehicleStats != null && vehicleStats.size() > 0) {
+            for (int i = 0; i < vehicleStats.size(); i++) {
+                if (gpsSensor.getVehicleNumber().equalsIgnoreCase(vehicleStats.get(i).getVehicleNo())) {
+                    vehicleStat = vehicleStats.get(i);
+                    distanceChange = gpsSensor.getDistanceChanged();
+                    if (distanceChange > 0) {
+                        if(vehicleStat.getDistanceTravelled() != null)
+                            vehicleStat.setDistanceTravelled(vehicleStat.getDistanceTravelled() + distanceChange);
+                        else
+                            vehicleStat.setDistanceTravelled(distanceChange);
+                    }
+                    vehicleStats.remove(i);
+                }
+            }
+        }else {
+            vehicleStats = new LinkedList<VehicleStats>();
+            if (vehicleStat == null) {
+                vehicleStat = new VehicleStats();
+                vehicleStat.setVehicleNo(gpsSensor.getVehicleNumber());
+                distanceChange = gpsSensor.getDistanceChanged();
+                if (distanceChange > 0) {
+                    vehicleStat.setDistanceTravelled(distanceChange);
+                }
+            }
+        }
+        vehicleStats.add(vehicleStat);
+        dashboard.setVehicleStats(vehicleStats);
     }
 
     private void saveAlertsInDashboard(Alerts alerts, Dashboard dashboard) {

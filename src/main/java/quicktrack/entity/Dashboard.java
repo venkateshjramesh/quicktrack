@@ -24,24 +24,7 @@ public class Dashboard {
 
    private List<Alerts> alerts;
 
-    @Override
-    public String toString() {
-        return "Dashboard{" +
-                "id='" + id + '\'' +
-                ", status='" + status + '\'' +
-                ", comments='" + comments + '\'' +
-                ", modifiedDate='" + modifiedDate + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                ", gpsDate='" + gpsDate + '\'' +
-                ", vehicleNumber='" + vehicleNumber + '\'' +
-                ", fleetId='" + fleetId + '\'' +
-                ", fuelSensorDashboard=" + fuelSensorDashboard +
-                ", gpsSensorDashboard=" + gpsSensorDashboard +
-                ", weightSensorDashboard=" + weightSensorDashboard +
-                ", tyreSensorDashboard=" + tyreSensorDashboard +
-                ", alerts=" + alerts +
-                '}';
-    }
+   private List<VehicleStats> vehicleStats;
 
     public String getId() {
         return id;
@@ -145,5 +128,33 @@ public class Dashboard {
 
     public void setAlerts(List<Alerts> alerts) {
         this.alerts = alerts;
+    }
+
+    public List<VehicleStats> getVehicleStats() {
+        return vehicleStats;
+    }
+
+    public void setVehicleStats(List<VehicleStats> vehicleStats) {
+        this.vehicleStats = vehicleStats;
+    }
+
+    @Override
+    public String toString() {
+        return "Dashboard{" +
+                "id='" + id + '\'' +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", gpsDate='" + gpsDate + '\'' +
+                ", vehicleNumber='" + vehicleNumber + '\'' +
+                ", fleetId='" + fleetId + '\'' +
+                ", fuelSensorDashboard=" + fuelSensorDashboard +
+                ", gpsSensorDashboard=" + gpsSensorDashboard +
+                ", weightSensorDashboard=" + weightSensorDashboard +
+                ", tyreSensorDashboard=" + tyreSensorDashboard +
+                ", alerts=" + alerts +
+                ", vehicleStats=" + vehicleStats +
+                '}';
     }
 }
