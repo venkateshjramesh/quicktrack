@@ -78,19 +78,39 @@ public class TyreSensorService {
         }
     }
     private void checkForVechicleNoAvailability(TyreSensor tyreSensor, List<TyreSensorDashboard> tyreSensorDashboard) {
+        TyreSensorDashboard tyreSensorDashboardObj = null;
         for(int i=0;i<tyreSensorDashboard.size();i++){
             if(tyreSensorDashboard.get(i).getVehicleNumber().equalsIgnoreCase(tyreSensor.getVehicleNumber())){
+                tyreSensorDashboardObj = tyreSensorDashboard.get(i);
                 tyreSensorDashboard.remove(i);
             }
         }
-        tyreSensorDashboard.add(convertToFuelSensorDashboard(tyreSensor));
+        tyreSensorDashboard.add(convertToFuelSensorDashboard(tyreSensor,tyreSensorDashboardObj));
     }
 
 
-    public TyreSensorDashboard convertToFuelSensorDashboard(TyreSensor tyreSensor){
-        TyreSensorDashboard tyreSensorDashboard = new TyreSensorDashboard();
-        tyreSensorDashboard.setTyrePressureSensor(tyreSensor.getTyrePressureSensor());
-        tyreSensorDashboard.setTyreChangeSensor(tyreSensor.getTyreChangeSensor());
+    public TyreSensorDashboard convertToFuelSensorDashboard(TyreSensor tyreSensor,TyreSensorDashboard tyreSensorDashboard){
+        if(tyreSensorDashboard == null)
+        tyreSensorDashboard = new TyreSensorDashboard();
+        TyreDetails tyreDetails = new TyreDetails();
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String date = formatter.format(new Date());
+        tyreDetails.setTyreChangeSensor(tyreSensor.getTyreChangeSensor());
+        tyreDetails.setTyrePressureSensor(tyreSensor.getTyrePressureSensor());
+        tyreDetails.setModifiedDate(date);
+        tyreDetails.setCreatedDate(date);
+
+        List<TyreDetails> tyreDetailsList = tyreSensorDashboard.getTyreDetails();
+        if(tyreDetailsList == null){
+            tyreDetailsList = new LinkedList<TyreDetails>();
+        }
+        if(tyreDetailsList.size() >= 5){
+            tyreDetailsList.remove(0);
+            tyreDetailsList.add(tyreDetails);
+        }else{
+            tyreDetailsList.add(tyreDetails);
+        }
+        tyreSensorDashboard.setTyreDetails(tyreDetailsList);
         tyreSensorDashboard.setStatus(tyreSensor.getStatus());
         tyreSensorDashboard.setComments(tyreSensor.getComments());
         tyreSensorDashboard.setModifiedDate(tyreSensor.getModifiedDate());

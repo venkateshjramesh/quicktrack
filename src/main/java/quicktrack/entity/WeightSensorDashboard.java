@@ -3,10 +3,11 @@ package quicktrack.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 public class WeightSensorDashboard {
 
-    private Double totalWeight;
-    private Double weightChange;
+    private List<WeightDetails> weightDetails;
     private String status;
     private String comments;
     private String modifiedDate;
@@ -15,21 +16,26 @@ public class WeightSensorDashboard {
     private String vehicleNumber;
     private String fleetId;
 
-
-    public Double getTotalWeight() {
-        return totalWeight;
+    @Override
+    public String toString() {
+        return "WeightSensorDashboard{" +
+                "weightDetails=" + weightDetails +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", gpsDate='" + gpsDate + '\'' +
+                ", vehicleNumber='" + vehicleNumber + '\'' +
+                ", fleetId='" + fleetId + '\'' +
+                '}';
     }
 
-    public void setTotalWeight(Double totalWeight) {
-        this.totalWeight = totalWeight;
+    public List<WeightDetails> getWeightDetails() {
+        return weightDetails;
     }
 
-    public Double getWeightChange() {
-        return weightChange;
-    }
-
-    public void setWeightChange(Double weightChange) {
-        this.weightChange = weightChange;
+    public void setWeightDetails(List<WeightDetails> weightDetails) {
+        this.weightDetails = weightDetails;
     }
 
     public String getStatus() {
@@ -80,26 +86,11 @@ public class WeightSensorDashboard {
         this.vehicleNumber = vehicleNumber;
     }
 
-    public String getFleedId() {
+    public String getFleetId() {
         return fleetId;
     }
 
-    public void setFleedId(String fleedId) {
-        this.fleetId = fleedId;
-    }
-
-    @Override
-    public String toString() {
-        return "WeightSensor{" +
-                ", totalWeight=" + totalWeight +
-                ", weightChange=" + weightChange +
-                ", status='" + status + '\'' +
-                ", comments='" + comments + '\'' +
-                ", modifiedDate='" + modifiedDate + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                ", gpsDate='" + gpsDate + '\'' +
-                ", vehicleNumber='" + vehicleNumber + '\'' +
-                ", fleetId='" + fleetId + '\'' +
-                '}';
+    public void setFleetId(String fleetId) {
+        this.fleetId = fleetId;
     }
 }

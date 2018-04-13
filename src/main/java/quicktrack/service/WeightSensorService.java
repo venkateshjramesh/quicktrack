@@ -78,19 +78,41 @@ public class WeightSensorService {
     }
 
     private void checkForVechicleNoAvailability(WeightSensor weightSensor, List<WeightSensorDashboard> weightSensorDashboard) {
+        WeightSensorDashboard weightSensorDashboardObj = null;
         for(int i=0;i<weightSensorDashboard.size();i++){
             if(weightSensorDashboard.get(i).getVehicleNumber().equalsIgnoreCase(weightSensor.getVehicleNumber())){
+                weightSensorDashboardObj = weightSensorDashboard.get(i);
                 weightSensorDashboard.remove(i);
             }
         }
-        weightSensorDashboard.add(convertToFuelSensorDashboard(weightSensor));
+        weightSensorDashboard.add(convertToFuelSensorDashboard(weightSensor,weightSensorDashboardObj));
     }
 
 
-    public WeightSensorDashboard convertToFuelSensorDashboard(WeightSensor weightSensor){
-        WeightSensorDashboard weightSensorDashboard = new WeightSensorDashboard();
-        weightSensorDashboard.setTotalWeight(weightSensor.getTotalWeight());
-        weightSensorDashboard.setWeightChange(weightSensor.getWeightChange());
+    public WeightSensorDashboard convertToFuelSensorDashboard(WeightSensor weightSensor,WeightSensorDashboard weightSensorDashboard){
+        if(weightSensorDashboard == null)
+        weightSensorDashboard = new WeightSensorDashboard();
+        /*weightSensorDashboard.setTotalWeight(weightSensor.getTotalWeight());
+        weightSensorDashboard.setWeightChange(weightSensor.getWeightChange());*/
+        WeightDetails weightDetails = new WeightDetails();
+        weightDetails.setTotalWeight(weightSensor.getTotalWeight());
+        weightDetails.setWeightChange(weightSensor.getWeightChange());
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String date = formatter.format(new Date());
+        weightDetails.setCreatedDate(date);
+        weightDetails.setModifiedDate(date);
+
+        List<WeightDetails> weightDetailsList = weightSensorDashboard.getWeightDetails();
+        if(weightDetailsList == null){
+            weightDetailsList = new LinkedList<WeightDetails>();
+        }
+        if(weightDetailsList.size() >= 5){
+            weightDetailsList.remove(0);
+            weightDetailsList.add(weightDetails);
+        }else{
+            weightDetailsList.add(weightDetails);
+        }
+        weightSensorDashboard.setWeightDetails(weightDetailsList);
         weightSensorDashboard.setStatus(weightSensor.getStatus());
         weightSensorDashboard.setComments(weightSensor.getComments());
         weightSensorDashboard.setModifiedDate(weightSensor.getModifiedDate());

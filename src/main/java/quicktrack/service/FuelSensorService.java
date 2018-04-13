@@ -1,21 +1,17 @@
 package quicktrack.service;
 
-import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import quicktrack.entity.*;
 import quicktrack.repository.AlertRepository;
 import quicktrack.repository.DashboardRepository;
 import quicktrack.repository.FuelSensorRepository;
-import quicktrack.repository.WeightSensorRepository;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FuelSensorService {
@@ -84,9 +80,17 @@ public class FuelSensorService {
                             vehicleStat.setFuelConsumed(vehicleStat.getFuelConsumed() + fuelChange);
                         else
                             vehicleStat.setFuelConsumed(fuelChange);
-
                     }
                     vehicleStats.remove(i);
+                }else{
+                    vehicleStat = new VehicleStats();
+                    vehicleStat.setVehicleNo(fuelSensor.getVehicleNumber());
+                    fuelChange = fuelSensor.getFuelChange();
+                    if (fuelChange > 0) {
+                        vehicleStat.setFuelAdded(fuelChange);
+                    } else if (fuelChange < 0) {
+                        vehicleStat.setFuelConsumed(fuelChange);
+                    }
                 }
             }
         }else {
@@ -121,19 +125,38 @@ public class FuelSensorService {
     }
 
     private void checkForVechicleNoAvailability(FuelSensor fuelSensor, List<FuelSensorDashboard> fuelSensorDashboard) {
+        FuelSensorDashboard fuelSensorDashboardObj = null;
         for(int i=0;i<fuelSensorDashboard.size();i++){
             if(fuelSensorDashboard.get(i).getVehicleNumber().equalsIgnoreCase(fuelSensor.getVehicleNumber())){
+                fuelSensorDashboardObj = fuelSensorDashboard.get(i);
                 fuelSensorDashboard.remove(i);
             }
         }
-        fuelSensorDashboard.add(convertToFuelSensorDashboard(fuelSensor));
+        fuelSensorDashboard.add(convertToFuelSensorDashboard(fuelSensor,fuelSensorDashboardObj));
     }
 
 
-    public FuelSensorDashboard convertToFuelSensorDashboard(FuelSensor fuelSensor){
-        FuelSensorDashboard fuelSensorDashboard = new FuelSensorDashboard();
-        fuelSensorDashboard.setTotalFuel(fuelSensor.getTotalFuel());
-        fuelSensorDashboard.setFuelChange(fuelSensor.getFuelChange());
+    public FuelSensorDashboard convertToFuelSensorDashboard(FuelSensor fuelSensor,FuelSensorDashboard fuelSensorDashboard){
+        if(fuelSensorDashboard == null)
+        fuelSensorDashboard = new FuelSensorDashboard();
+        FuelDetails fuelDetail = new FuelDetails();
+        fuelDetail.setFuelChange(fuelSensor.getFuelChange());
+        fuelDetail.setTotalFuel(fuelSensor.getTotalFuel());
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String date = formatter.format(new Date());
+        fuelDetail.setCreatedDate(date);
+        fuelDetail.setModifiedDate(date);
+        List<FuelDetails> fuelDetails = fuelSensorDashboard.getFuelDetails();
+        if(fuelDetails == null){
+            fuelDetails = new LinkedList<FuelDetails>();
+        }
+        if(fuelDetails.size() >= 5){
+            fuelDetails.remove(0);
+            fuelDetails.add(fuelDetail);
+        }else{
+            fuelDetails.add(fuelDetail);
+        }
+        fuelSensorDashboard.setFuelDetails(fuelDetails);
         fuelSensorDashboard.setStatus(fuelSensor.getStatus());
         fuelSensorDashboard.setComments(fuelSensor.getComments());
         fuelSensorDashboard.setModifiedDate(fuelSensor.getModifiedDate());

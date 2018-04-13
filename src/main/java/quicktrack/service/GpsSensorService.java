@@ -78,6 +78,13 @@ public class GpsSensorService {
                             vehicleStat.setDistanceTravelled(distanceChange);
                     }
                     vehicleStats.remove(i);
+                }else{
+                    vehicleStat = new VehicleStats();
+                    vehicleStat.setVehicleNo(gpsSensor.getVehicleNumber());
+                    distanceChange = gpsSensor.getDistanceChanged();
+                    if (distanceChange > 0) {
+                        vehicleStat.setDistanceTravelled(distanceChange);
+                    }
                 }
             }
         }else {
@@ -110,19 +117,38 @@ public class GpsSensorService {
     }
 
     private void checkForVechicleNoAvailability(GpsSensor gpsSensor, List<GpsSensorDashboard> gpsSensorDashboard) {
+        GpsSensorDashboard gpsSensorDashboardObj = null;
         for(int i=0;i<gpsSensorDashboard.size();i++){
             if(gpsSensorDashboard.get(i).getVehicleNumber().equalsIgnoreCase(gpsSensor.getVehicleNumber())){
+                gpsSensorDashboardObj = gpsSensorDashboard.get(i);
                 gpsSensorDashboard.remove(i);
             }
         }
-        gpsSensorDashboard.add(convertToFuelSensorDashboard(gpsSensor));
+        gpsSensorDashboard.add(convertToFuelSensorDashboard(gpsSensor,gpsSensorDashboardObj));
     }
 
 
-    public GpsSensorDashboard convertToFuelSensorDashboard(GpsSensor gpsSensor){
-        GpsSensorDashboard gpsSensorDashboard = new GpsSensorDashboard();
-        gpsSensorDashboard.setLatitude(gpsSensor.getLatitude());
-        gpsSensorDashboard.setLatitude(gpsSensor.getLongitude());
+    public GpsSensorDashboard convertToFuelSensorDashboard(GpsSensor gpsSensor,GpsSensorDashboard gpsSensorDashboard){
+        if(gpsSensorDashboard == null)
+        gpsSensorDashboard = new GpsSensorDashboard();
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String date = formatter.format(new Date());
+        GpsDetails gpsDetails = new GpsDetails();
+        gpsDetails.setLatitude(gpsSensor.getLatitude());
+        gpsDetails.setLongitude(gpsSensor.getLongitude());
+        gpsDetails.setCreatedDate(date);
+        gpsDetails.setModifiedDate(date);
+        List<GpsDetails> gpsDetailsList = gpsSensorDashboard.getGpsDetails();
+        if(gpsDetailsList == null){
+            gpsDetailsList = new LinkedList<GpsDetails>();
+        }
+        if(gpsDetailsList.size() >= 5){
+            gpsDetailsList.remove(0);
+            gpsDetailsList.add(gpsDetails);
+        }else{
+            gpsDetailsList.add(gpsDetails);
+        }
+        gpsSensorDashboard.setGpsDetails(gpsDetailsList);
         gpsSensorDashboard.setStatus(gpsSensor.getStatus());
         gpsSensorDashboard.setComments(gpsSensor.getComments());
         gpsSensorDashboard.setModifiedDate(gpsSensor.getModifiedDate());

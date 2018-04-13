@@ -1,12 +1,10 @@
 package quicktrack.entity;
 
-
-
+import java.util.List;
 
 public class FuelSensorDashboard {
 
-    private Double totalFuel;
-    private Double fuelChange;
+    private List<FuelDetails> fuelDetails;
     private String status;
     private String comments;
     private String modifiedDate;
@@ -15,22 +13,27 @@ public class FuelSensorDashboard {
     private String vehicleNumber;
     private String fleetId;
 
-
-
-    public Double getTotalFuel() {
-        return totalFuel;
+    @Override
+    public String toString() {
+        return "FuelSensorDashboard{" +
+                "fuelDetails=" + fuelDetails +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", gpsDate='" + gpsDate + '\'' +
+                ", vehicleNumber='" + vehicleNumber + '\'' +
+                ", fleetId='" + fleetId + '\'' +
+                '}';
     }
 
-    public void setTotalFuel(Double totalFuel) {
-        this.totalFuel = totalFuel;
+
+    public List<FuelDetails> getFuelDetails() {
+        return fuelDetails;
     }
 
-    public Double getFuelChange() {
-        return fuelChange;
-    }
-
-    public void setFuelChange(Double fuelChange) {
-        this.fuelChange = fuelChange;
+    public void setFuelDetails(List<FuelDetails> fuelDetails) {
+        this.fuelDetails = fuelDetails;
     }
 
     public String getStatus() {
@@ -87,20 +90,5 @@ public class FuelSensorDashboard {
 
     public void setFleetId(String fleetId) {
         this.fleetId = fleetId;
-    }
-
-    @Override
-    public String toString() {
-        return "FuelSensor{" +
-                ", totalFuel=" + totalFuel +
-                ", fuelChange=" + fuelChange +
-                ", status='" + status + '\'' +
-                ", comments='" + comments + '\'' +
-                ", modifiedDate='" + modifiedDate + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                ", gpsDate='" + gpsDate + '\'' +
-                ", vehicleNumber='" + vehicleNumber + '\'' +
-                ", fleetId='" + fleetId + '\'' +
-                '}';
     }
 }

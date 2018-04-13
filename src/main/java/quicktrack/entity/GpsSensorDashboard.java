@@ -1,9 +1,10 @@
 package quicktrack.entity;
 
+import java.util.List;
+
 public class GpsSensorDashboard {
 
-    private Double latitude;
-    private Double longitude;
+    private List<GpsDetails> gpsDetails;
     private String status;
     private String comments;
     private String modifiedDate;
@@ -12,21 +13,26 @@ public class GpsSensorDashboard {
     private String vehicleNumber;
     private String fleetId;
 
-
-    public Double getLatitude() {
-        return latitude;
+    @Override
+    public String toString() {
+        return "GpsSensorDashboard{" +
+                "gpsDetails=" + gpsDetails +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", gpsDate='" + gpsDate + '\'' +
+                ", vehicleNumber='" + vehicleNumber + '\'' +
+                ", fleetId='" + fleetId + '\'' +
+                '}';
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public List<GpsDetails> getGpsDetails() {
+        return gpsDetails;
     }
 
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public void setGpsDetails(List<GpsDetails> gpsDetails) {
+        this.gpsDetails = gpsDetails;
     }
 
     public String getStatus() {
@@ -83,20 +89,5 @@ public class GpsSensorDashboard {
 
     public void setFleetId(String fleetId) {
         this.fleetId = fleetId;
-    }
-
-    @Override
-    public String toString() {
-        return "GpsSensor{" +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", status='" + status + '\'' +
-                ", comments='" + comments + '\'' +
-                ", modifiedDate='" + modifiedDate + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                ", gpsDate='" + gpsDate + '\'' +
-                ", vehicleNumber='" + vehicleNumber + '\'' +
-                ", fleetId='" + fleetId + '\'' +
-                '}';
     }
 }

@@ -3,11 +3,12 @@ package quicktrack.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 
 public class TyreSensorDashboard {
 
-    private TyrePressureSensor tyrePressureSensor;
-    private TyreChangeSensor tyreChangeSensor;
+    private List<TyreDetails> tyreDetails;
     private String status;
     private String comments;
     private String modifiedDate;
@@ -16,21 +17,12 @@ public class TyreSensorDashboard {
     private String vehicleNumber;
     private String fleetId;
 
-
-    public TyrePressureSensor getTyrePressureSensor() {
-        return tyrePressureSensor;
+    public List<TyreDetails> getTyreDetails() {
+        return tyreDetails;
     }
 
-    public void setTyrePressureSensor(TyrePressureSensor tyrePressureSensor) {
-        this.tyrePressureSensor = tyrePressureSensor;
-    }
-
-    public TyreChangeSensor getTyreChangeSensor() {
-        return tyreChangeSensor;
-    }
-
-    public void setTyreChangeSensor(TyreChangeSensor tyreChangeSensor) {
-        this.tyreChangeSensor = tyreChangeSensor;
+    public void setTyreDetails(List<TyreDetails> tyreDetails) {
+        this.tyreDetails = tyreDetails;
     }
 
     public String getStatus() {
@@ -91,9 +83,8 @@ public class TyreSensorDashboard {
 
     @Override
     public String toString() {
-        return "TyreSensor{" +
-                ", tyrePressureSensor=" + tyrePressureSensor +
-                ", tyreChangeSensor=" + tyreChangeSensor +
+        return "TyreSensorDashboard{" +
+                "tyreDetails=" + tyreDetails +
                 ", status='" + status + '\'' +
                 ", comments='" + comments + '\'' +
                 ", modifiedDate='" + modifiedDate + '\'' +
