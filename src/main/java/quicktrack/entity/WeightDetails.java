@@ -5,6 +5,8 @@ public class WeightDetails {
     private Double weightChange;
     private String modifiedDate;
     private String createdDate;
+    private String status;
+    private String comments;
 
     @Override
     public String toString() {
@@ -13,6 +15,8 @@ public class WeightDetails {
                 ", weightChange=" + weightChange +
                 ", modifiedDate='" + modifiedDate + '\'' +
                 ", createdDate='" + createdDate + '\'' +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
                 '}';
     }
 
@@ -46,5 +50,21 @@ public class WeightDetails {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

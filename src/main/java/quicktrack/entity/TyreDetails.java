@@ -6,6 +6,20 @@ public class TyreDetails {
     private TyreChangeSensor tyreChangeSensor;
     private String modifiedDate;
     private String createdDate;
+    private String status;
+    private String comments;
+
+    @Override
+    public String toString() {
+        return "TyreDetails{" +
+                "tyrePressureSensor=" + tyrePressureSensor +
+                ", tyreChangeSensor=" + tyreChangeSensor +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
+                '}';
+    }
 
     public TyrePressureSensor getTyrePressureSensor() {
         return tyrePressureSensor;
@@ -39,13 +53,19 @@ public class TyreDetails {
         this.createdDate = createdDate;
     }
 
-    @Override
-    public String toString() {
-        return "TyreDetails{" +
-                "tyrePressureSensor=" + tyrePressureSensor +
-                ", tyreChangeSensor=" + tyreChangeSensor +
-                ", modifiedDate='" + modifiedDate + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                '}';
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

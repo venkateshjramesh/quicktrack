@@ -8,6 +8,20 @@ public class FuelDetails {
     private Double fuelChange;
     private String modifiedDate;
     private String createdDate;
+    private String status;
+    private String comments;
+
+    @Override
+    public String toString() {
+        return "FuelDetails{" +
+                "totalFuel=" + totalFuel +
+                ", fuelChange=" + fuelChange +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
+                '}';
+    }
 
     public Double getTotalFuel() {
         return totalFuel;
@@ -41,13 +55,19 @@ public class FuelDetails {
         this.createdDate = createdDate;
     }
 
-    @Override
-    public String toString() {
-        return "FuelDetails{" +
-                "totalFuel=" + totalFuel +
-                ", fuelChange=" + fuelChange +
-                ", modifiedDate='" + modifiedDate + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                '}';
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

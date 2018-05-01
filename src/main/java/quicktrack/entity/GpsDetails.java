@@ -5,6 +5,20 @@ public class GpsDetails {
     private Double longitude;
     private String modifiedDate;
     private String createdDate;
+    private String status;
+    private String comments;
+
+    @Override
+    public String toString() {
+        return "GpsDetails{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", status='" + status + '\'' +
+                ", comments='" + comments + '\'' +
+                '}';
+    }
 
     public Double getLatitude() {
         return latitude;
@@ -38,13 +52,19 @@ public class GpsDetails {
         this.createdDate = createdDate;
     }
 
-    @Override
-    public String toString() {
-        return "GpsDetails{" +
-                "latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", modifiedDate='" + modifiedDate + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                '}';
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

@@ -99,7 +99,8 @@ public class TyreSensorService {
         tyreDetails.setTyrePressureSensor(tyreSensor.getTyrePressureSensor());
         tyreDetails.setModifiedDate(date);
         tyreDetails.setCreatedDate(date);
-
+        tyreDetails.setComments(tyreSensor.getComments());
+        tyreDetails.setStatus(tyreSensor.getStatus());
         List<TyreDetails> tyreDetailsList = tyreSensorDashboard.getTyreDetails();
         if(tyreDetailsList == null){
             tyreDetailsList = new LinkedList<TyreDetails>();
@@ -111,8 +112,6 @@ public class TyreSensorService {
             tyreDetailsList.add(tyreDetails);
         }
         tyreSensorDashboard.setTyreDetails(tyreDetailsList);
-        tyreSensorDashboard.setStatus(tyreSensor.getStatus());
-        tyreSensorDashboard.setComments(tyreSensor.getComments());
         tyreSensorDashboard.setModifiedDate(tyreSensor.getModifiedDate());
         tyreSensorDashboard.setCreatedDate(tyreSensor.getCreatedDate());
         tyreSensorDashboard.setGpsDate(tyreSensor.getGpsDate());

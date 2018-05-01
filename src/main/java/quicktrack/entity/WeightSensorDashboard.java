@@ -8,8 +8,6 @@ import java.util.List;
 public class WeightSensorDashboard {
 
     private List<WeightDetails> weightDetails;
-    private String status;
-    private String comments;
     private String modifiedDate;
     private String createdDate;
     private String gpsDate;
@@ -20,8 +18,6 @@ public class WeightSensorDashboard {
     public String toString() {
         return "WeightSensorDashboard{" +
                 "weightDetails=" + weightDetails +
-                ", status='" + status + '\'' +
-                ", comments='" + comments + '\'' +
                 ", modifiedDate='" + modifiedDate + '\'' +
                 ", createdDate='" + createdDate + '\'' +
                 ", gpsDate='" + gpsDate + '\'' +
@@ -36,22 +32,6 @@ public class WeightSensorDashboard {
 
     public void setWeightDetails(List<WeightDetails> weightDetails) {
         this.weightDetails = weightDetails;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
     }
 
     public String getModifiedDate() {

@@ -146,6 +146,8 @@ public class FuelSensorService {
         String date = formatter.format(new Date());
         fuelDetail.setCreatedDate(date);
         fuelDetail.setModifiedDate(date);
+        fuelDetail.setComments(fuelSensor.getComments());
+        fuelDetail.setStatus(fuelSensor.getStatus());
         List<FuelDetails> fuelDetails = fuelSensorDashboard.getFuelDetails();
         if(fuelDetails == null){
             fuelDetails = new LinkedList<FuelDetails>();
@@ -157,8 +159,6 @@ public class FuelSensorService {
             fuelDetails.add(fuelDetail);
         }
         fuelSensorDashboard.setFuelDetails(fuelDetails);
-        fuelSensorDashboard.setStatus(fuelSensor.getStatus());
-        fuelSensorDashboard.setComments(fuelSensor.getComments());
         fuelSensorDashboard.setModifiedDate(fuelSensor.getModifiedDate());
         fuelSensorDashboard.setCreatedDate(fuelSensor.getCreatedDate());
         fuelSensorDashboard.setGpsDate(fuelSensor.getGpsDate());

@@ -101,7 +101,8 @@ public class WeightSensorService {
         String date = formatter.format(new Date());
         weightDetails.setCreatedDate(date);
         weightDetails.setModifiedDate(date);
-
+        weightDetails.setComments(weightSensor.getComments());
+        weightDetails.setStatus(weightSensor.getStatus());
         List<WeightDetails> weightDetailsList = weightSensorDashboard.getWeightDetails();
         if(weightDetailsList == null){
             weightDetailsList = new LinkedList<WeightDetails>();
@@ -113,8 +114,6 @@ public class WeightSensorService {
             weightDetailsList.add(weightDetails);
         }
         weightSensorDashboard.setWeightDetails(weightDetailsList);
-        weightSensorDashboard.setStatus(weightSensor.getStatus());
-        weightSensorDashboard.setComments(weightSensor.getComments());
         weightSensorDashboard.setModifiedDate(weightSensor.getModifiedDate());
         weightSensorDashboard.setCreatedDate(weightSensor.getCreatedDate());
         weightSensorDashboard.setGpsDate(weightSensor.getGpsDate());

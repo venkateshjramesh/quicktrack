@@ -138,6 +138,8 @@ public class GpsSensorService {
         gpsDetails.setLongitude(gpsSensor.getLongitude());
         gpsDetails.setCreatedDate(date);
         gpsDetails.setModifiedDate(date);
+        gpsDetails.setComments(gpsSensor.getComments());
+        gpsDetails.setStatus(gpsSensor.getStatus());
         List<GpsDetails> gpsDetailsList = gpsSensorDashboard.getGpsDetails();
         if(gpsDetailsList == null){
             gpsDetailsList = new LinkedList<GpsDetails>();
@@ -149,8 +151,6 @@ public class GpsSensorService {
             gpsDetailsList.add(gpsDetails);
         }
         gpsSensorDashboard.setGpsDetails(gpsDetailsList);
-        gpsSensorDashboard.setStatus(gpsSensor.getStatus());
-        gpsSensorDashboard.setComments(gpsSensor.getComments());
         gpsSensorDashboard.setModifiedDate(gpsSensor.getModifiedDate());
         gpsSensorDashboard.setCreatedDate(gpsSensor.getCreatedDate());
         gpsSensorDashboard.setGpsDate(gpsSensor.getGpsDate());

@@ -9,8 +9,6 @@ import java.util.List;
 public class TyreSensorDashboard {
 
     private List<TyreDetails> tyreDetails;
-    private String status;
-    private String comments;
     private String modifiedDate;
     private String createdDate;
     private String gpsDate;
@@ -23,22 +21,6 @@ public class TyreSensorDashboard {
 
     public void setTyreDetails(List<TyreDetails> tyreDetails) {
         this.tyreDetails = tyreDetails;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
     }
 
     public String getModifiedDate() {
@@ -85,8 +67,6 @@ public class TyreSensorDashboard {
     public String toString() {
         return "TyreSensorDashboard{" +
                 "tyreDetails=" + tyreDetails +
-                ", status='" + status + '\'' +
-                ", comments='" + comments + '\'' +
                 ", modifiedDate='" + modifiedDate + '\'' +
                 ", createdDate='" + createdDate + '\'' +
                 ", gpsDate='" + gpsDate + '\'' +

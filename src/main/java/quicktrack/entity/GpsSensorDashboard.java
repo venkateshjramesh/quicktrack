@@ -5,8 +5,6 @@ import java.util.List;
 public class GpsSensorDashboard {
 
     private List<GpsDetails> gpsDetails;
-    private String status;
-    private String comments;
     private String modifiedDate;
     private String createdDate;
     private String gpsDate;
@@ -17,8 +15,6 @@ public class GpsSensorDashboard {
     public String toString() {
         return "GpsSensorDashboard{" +
                 "gpsDetails=" + gpsDetails +
-                ", status='" + status + '\'' +
-                ", comments='" + comments + '\'' +
                 ", modifiedDate='" + modifiedDate + '\'' +
                 ", createdDate='" + createdDate + '\'' +
                 ", gpsDate='" + gpsDate + '\'' +
@@ -33,22 +29,6 @@ public class GpsSensorDashboard {
 
     public void setGpsDetails(List<GpsDetails> gpsDetails) {
         this.gpsDetails = gpsDetails;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
     }
 
     public String getModifiedDate() {
